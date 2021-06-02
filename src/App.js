@@ -1,7 +1,10 @@
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
+
 function App() {
     return (
         <div className="App">
-            <h2>Welcome to Instagram Clone</h2>
+            <SignUp />
         </div>
     );
 }
