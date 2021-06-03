@@ -1,34 +1,35 @@
-// import SignIn from "./pages/SignIn";
-// import SignUp from "./pages/SignUp";
-import Home from './pages/Home'
-import './App.css'
-import {getFirebaseUsers} from './lib/firebase'
 import { useState, useEffect } from 'react';
+import Home from './pages/Home'
+import {db} from './lib/firebase'
+import './App.css'
 
 function App() {
     const [users, setUsers] = useState([])
-    // const getUsers = async () => {
-    //     const users = await getFirebaseUsers();
-    //     setUsers(users);
-    // }
-    // useEffect(() => {
-    //     getUsers()
-    // }, [users])
 
-    // console.log(users);
-    // getFirebaseUsers()
-    //     .then((users) =>{
-    //         setUsers(users)
-    //     });
+    useEffect(() => {
+        db.collection('users').onSnapshot(snapShot => {
+            const users = snapShot.docs.map(doc => {
+                return {id: doc.id, data: doc.data()}
+            });
+            setUsers(users);
+        })
+    }, [])
+
     console.log(users);
+
     return (
         <div className="App">
-            <div className='test1'>
-                test 1
-            </div>
+        {
+            users.map(({id, data}) => (
+                <div className='test1'>
+                    <p>{id}</p>
+                    <p>{data.nickname}</p>
+                </div>
+            ))
+        }
             <Home />
         </div>
-    );
+    )
 }
 
 export default App;

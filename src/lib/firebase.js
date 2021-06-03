@@ -13,20 +13,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 const db = firebase.firestore();
-export const auth = firebase.auth();
-export default firebase;
+const auth = firebase.auth();
+const storage = firebase.storage();
 
-export const getFirebaseUsers = async () => {
-  try {
-    const snapshot = await db
-      .collection("users")
-      .get();
-    const users = snapshot.docs.map(
-      (doc) => ({ ...doc.data(), id: doc.id })
-    );
-    return users;
-  } catch (err) {
-    console.log(err);
-    return [];
-  }
-}
+export {db, auth, storage};
