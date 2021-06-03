@@ -5,7 +5,7 @@ export default function Home() {
     const classes = useStyles();
     return (
         <div className='test2'>
-            test 2
+            Home
         </div>
     )
 }

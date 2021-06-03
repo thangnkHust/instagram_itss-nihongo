@@ -5,7 +5,7 @@ export default function Setting() {
     const classes = useStyles();
     return (
         <div>
-            
+            Setting
         </div>
     )
 }
