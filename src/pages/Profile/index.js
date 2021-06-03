@@ -5,7 +5,7 @@ export default function Profile() {
     const classes = useStyles();
     return (
         <div>
-            
+            Profile
         </div>
     )
 }
