@@ -1,11 +1,9 @@
 import React from 'react'
-import useStyles from './styles'
 
-export default function Post() {
-    const classes = useStyles();
-    return (
-        <div>
-            
-        </div>
-    )
+export default function Header() {
+  return (
+    <div>
+      Đây là header
+    </div>
+  )
 }

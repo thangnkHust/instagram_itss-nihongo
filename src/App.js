@@ -19,14 +19,6 @@ function App() {
 
     return (
         <div className="App">
-        {
-            users.map(({id, data}) => (
-                <div className='test1'>
-                    <p>{id}</p>
-                    <p>{data.nickname}</p>
-                </div>
-            ))
-        }
             <Home />
         </div>
     )
