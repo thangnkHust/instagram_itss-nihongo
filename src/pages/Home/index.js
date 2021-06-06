@@ -13,13 +13,13 @@ export default function Home() {
         user: "users/uVkT3MEO10GJJB9yiz62"
     }
 
-    useEffect(() => {
-        getDetailPost("zFmZR3BZHVM6mVRxNdd6")
-    }, [])
+    // useEffect(() => {
+    //     getDetailPost("zFmZR3BZHVM6mVRxNdd6")
+    // }, [])
 
     return (
         <div className='test2'>
-            Home
+            <Header />
         </div>
     )
 }
