@@ -9,10 +9,10 @@ export default function Body() {
     <Grid container className={classes.container} xs={12} direction='column'>
       <Grid item className={classes.account}>
         <Grid container direction='row' className={classes}>
-          <Grid item xs={3}>
+          <Grid item>
             <Avatar alt="Truonghung" src={avatar} className={classes.avatar}/>
           </Grid>
-          <Grid item xs={9} direction='column' className={classes.nameAccount}>
+          <Grid item direction='column' className={classes.nameAccount}>
             <Grid item>
               <Typography className={classes.textAccount}>User name</Typography>
             </Grid>
@@ -29,10 +29,10 @@ export default function Body() {
         </Grid>
 
         <Grid container direction='row' className={classes.anotherAccount}>
-          <Grid item xs={2}>
+          <Grid item>
             <Avatar alt="Truonghung" src={avatar} className={classes.avatarSuggest}/>
           </Grid>
-          <Grid item xs={10} direction='column' className={classes.nameAccountSuggest}>
+          <Grid item direction='column' className={classes.nameAccountSuggest}>
             <Grid item>
               <Typography className={classes.textAccountSuggest}>User name</Typography>
             </Grid>
@@ -43,10 +43,10 @@ export default function Body() {
         </Grid>
 
         <Grid container direction='row' className={classes.anotherAccount}>
-          <Grid item xs={2}>
+          <Grid item>
             <Avatar alt="Truonghung" src={avatar} className={classes.avatarSuggest}/>
           </Grid>
-          <Grid item xs={10} direction='column' className={classes.nameAccountSuggest}>
+          <Grid item direction='column' className={classes.nameAccountSuggest}>
             <Grid item>
               <Typography className={classes.textAccountSuggest}>User name</Typography>
             </Grid>
@@ -57,10 +57,10 @@ export default function Body() {
         </Grid>
 
         <Grid container direction='row' className={classes.anotherAccount}>
-          <Grid item xs={2}>
+          <Grid item>
             <Avatar alt="Truonghung" src={avatar} className={classes.avatarSuggest}/>
           </Grid>
-          <Grid item xs={10} direction='column' className={classes.nameAccountSuggest}>
+          <Grid item direction='column' className={classes.nameAccountSuggest}>
             <Grid item>
               <Typography className={classes.textAccountSuggest}>User name</Typography>
             </Grid>
