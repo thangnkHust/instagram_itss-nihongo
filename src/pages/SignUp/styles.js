@@ -9,7 +9,11 @@ export default makeStyles((theme) => ({
     },
     avatar: {
         margin: theme.spacing(1),
-        backgroundColor: theme.palette.secondary.main,
+        backgroundColor: theme.palette.info.main,
+        color: '#000000',
+        border: '1px solid',
+        width: '60px',
+        height: '60px'
     },
     form: {
         width: '100%', // Fix IE 11 issue.
@@ -18,4 +22,7 @@ export default makeStyles((theme) => ({
     submit: {
         margin: theme.spacing(3, 0, 2),
     },
+    icon: {
+        fontSize: '40px'
+    }
 }));
