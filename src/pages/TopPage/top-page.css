@@ -43,7 +43,7 @@ a:hover{
     letter-spacing: 10px;
   }
 
-.btn {
+.btn-top {
     background: transparent;
     display: inline-block;
     box-sizing: border-box;
@@ -62,14 +62,14 @@ a:hover{
 
 }
 
-.btn span {
+.btn-top span {
     cursor: pointer;
     display: inline-block;
     position: relative;
     transition: 0.5s;
   }
 
-  .btn span:after {
+  .btn-top span:after {
     content: '\00bb';
     position: absolute;
     opacity: 0;
@@ -78,11 +78,11 @@ a:hover{
     transition: 0.5s;
   }
 
-  .btn:hover span {
+  .btn-top:hover span {
     padding-right: 25px;
   }
 
-  .btn:hover span:after {
+  .btn-top:hover span:after {
     opacity: 1;
     right: 0;
   }

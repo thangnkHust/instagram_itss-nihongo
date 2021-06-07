@@ -1,27 +1,46 @@
-import React, {useState} from 'react';
-import { Link } from 'react-router-dom'
-import {
-    Avatar,
-    Button,
-    CssBaseline,
-    TextField,
-    FormControlLabel,
-    Checkbox,
-    Grid,
-    Typography,
-    Container,
-} from '@material-ui/core';
-import InstagramIcon from '@material-ui/icons/Instagram';
-import useStyles from './styles'
-import './sign-in.css'
+import React, { useState } from 'react';
+import { Link, Redirect } from 'react-router-dom'
+import { connect } from 'react-redux';
+import { db, auth } from '../../lib/firebase';
+import { ToastContainer, toast } from 'react-toastify';
+import { setData } from '../../actions/auth';
+import 'react-toastify/dist/ReactToastify.css';
 
-export default function SignIn() {
-    const classes = useStyles();
+function SignIn(props) {
     const [login, setLogin] = useState({email: '', password: ''})
+    const { userLogined } = props;
 
     const handleLogin = (e) => {
         e.preventDefault()
-        console.log(login);
+
+        db.collection("users")
+        .where("email", "==", login.email)
+        .where('password', '==', login.password)
+        .get()
+        .then((querySnapshot) => {
+            if (querySnapshot.docs.length > 0) {
+                const user = {...querySnapshot.docs[0].data(), id: querySnapshot.docs[0].id }
+                console.log(user);
+                toast.success('Đăng nhập thành công', {
+                    autoClose: 1000,
+                });
+                setTimeout(() => {
+                    props.setData(user)
+                    localStorage.setItem('user', JSON.stringify(user))
+                }, 1000)
+            }else {
+                toast.error('Sai tài khoản hoặc mật khẩu', {
+                    autoClose: 3000,
+                });
+                setLogin({
+                    email: login.email,
+                    password: ''
+                })
+            }
+        })
+        .catch((error) => {
+            console.log("Error getting documents: ", error);
+        });
     }
 
     const handleChange = e => {
@@ -32,83 +51,75 @@ export default function SignIn() {
     }
 
     return (
-        <Container component="main" maxWidth="xs">
-            <CssBaseline />
-            <div className={classes.paper}>
-                <Avatar className={classes.avatar}>
-                    <InstagramIcon className={classes.icon} />
-                </Avatar>
-                <Typography component="h1" variant="h5">
-                    Sign in
-                </Typography>
-                <form className={classes.form} onSubmit={handleLogin}>
-                    <TextField
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        id="email"
-                        label="Email Address"
-                        name="email"
-                        autoComplete="email"
-                        autoFocus
-                        type="email"
-                        value={login.email}
-                        onChange={handleChange}
-                    />
-                    <TextField
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        name="password"
-                        label="Password"
-                        type="password"
-                        id="password"
-                        autoComplete="current-password"
-                        value={login.password}
-                        onChange={handleChange}
-                    />
-                    <FormControlLabel
-                        control={<Checkbox value="remember" color="primary" />}
-                        label="Remember me"
-                    />
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        color="primary"
-                        className={classes.submit}
-                    >
-                        Sign In
-                    </Button>
-                    <Grid container>
-                        <Grid item xs>
-                        </Grid>
-                        <Grid item>
-                            <Link to='/sign-up'>
-                                {"Don't have an account? Sign Up"}
-                            </Link>
-                        </Grid>
-                    </Grid>
-                </form>
-            </div>
-
-            <p>Sign in with orther </p>
-            <div style={{display: 'flex'}}>
-                <div id="gSignInWrapper">
-                    <div id="customBtn" className="customGPlusSignIn">
-                        <span className="g-icon" />
-                        <span className="buttonText">Google</span>
-                    </div>
-                </div>
-                <div id="gSignInWrapper" style={{ marginLeft: '5%'}}>
-                    <div id="customBtn" className="customGPlusSignIn">
-                        <span className='f-icon' />
-                        <span className="buttonText">Facebook</span>
+        userLogined.isLogin ? <Redirect to='/home' />
+        :
+        <div className="container">
+            <ToastContainer />
+            <div className="row justify-content-center my-5">
+                <div className="col-xl-5 col-lg-12 col-md-5">
+                    <div className="card o-hidden border-0 shadow-lg my-5">
+                        <div className="card-body p-0">
+                            <div className="row">
+                                <div className="col-lg-1"></div>
+                                <div className="col-lg-10">
+                                    <div className="p-5">
+                                        <div className="text-center">
+                                            <h1 className="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                                        </div>
+                                        <form className='user' onSubmit={handleLogin}>
+                                            <div className="form-group">
+                                                <input onChange={handleChange} type="email" name='email' className="form-control form-control-user"
+                                                    id="exampleInputEmail" aria-describedby="emailHelp" value={login.email}
+                                                    placeholder="Enter Email Address..." autoComplete='username' required />
+                                            </div>
+                                            <div className="form-group">
+                                                <input onChange={handleChange} type="password" className="form-control form-control-user" value={login.password} id="exampleInputPassword" placeholder="Password" autoComplete='current-password' required />
+                                            </div>
+                                            <div className="form-group">
+                                                <div className="custom-control custom-checkbox small">
+                                                    <input type="checkbox" className="custom-control-input" id="customCheck" />
+                                                    <label className="custom-control-label" >Remember Me</label>
+                                                </div>
+                                            </div>
+                                            <button className="btn btn-primary btn-user btn-block" style={{backgroundColor: '#5F9EA0', borderColor: '#5F9EA0'}}>Login</button>
+                                            <hr />
+                                            <a className="btn btn-google btn-user btn-block" style={{backgroundColor: '#ea4335'}}>
+                                                <i className="fab fa-google fa-fw"></i> Login with Google
+                                            </a>
+                                            <a className="btn btn-facebook btn-user btn-block" style={{color: 'white', backgroundColor: '#3b5998'}} >
+                                                <i className="fab fa-facebook-f fa-fw"></i> Login with Facebook
+                                            </a>
+                                        </form>
+                                        <hr />
+                                        <div className="text-center">
+                                            {/* <a className="small" href='#'>Forgot Password?</a> */}
+                                        </div>
+                                        <div className="text-center">
+                                            <Link to='/sign-up' className="small" >Create an Account!</Link>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </Container>
+        </div>
     );
 }
+
+const mapStateToProps = state => {
+    return {
+        userLogined: state.authReducer
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        setData: userLogined => {
+            dispatch(setData(userLogined))
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
