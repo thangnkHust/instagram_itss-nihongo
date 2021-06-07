@@ -1,3 +1,6 @@
+import CreatePostModal from './components/CreatePostModal';
+import PostList from './components/PostList';
+import Home from './pages/Home';
 import MainRoute from './routes'
 import { useEffect } from 'react'
 import { connect } from 'react-redux';
@@ -9,7 +12,8 @@ function App(props) {
         user && props.setData(JSON.parse(user))
     }, [props])
     return (
-        <MainRoute />
+        // <MainRoute />
+        <Home />
     )
 }
 
