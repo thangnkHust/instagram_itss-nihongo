@@ -12,14 +12,14 @@ export default function PostList() {
     {
       id: "12",
       title: "Đây là description cho cái ảnh này",
-      description: "hung",
+      content: "Toi ten la hung",
       likeCount: 10,
-      updatedAt: "07/06/2021"
+      updatedAt: "07/06/2021",
     },
     {
       id: "12",
       title: "abc",
-      description: "hung",
+      content: "Toi ten la Hung",
       likeCount: 10,
       updatedAt: "07/06/2021"
     },
