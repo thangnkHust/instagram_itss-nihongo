@@ -20,7 +20,7 @@ export default makeStyles((theme) => ({
         alignItems: 'left',
     },
     logo: {
-        width: 130,
+        width: 180,
         height: 60,
     },
 

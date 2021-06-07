@@ -3,6 +3,7 @@ import useStyles from './styles'
 import {createPost, deletePost, getAllPost, getDetailPost, updatePost} from '../../api/PostApi'
 import { useState, useEffect } from 'react';
 import Header from '../../components/Header';
+import Body from '../../components/Body';
 
 export default function Home() {
     const classes = useStyles();
@@ -20,6 +21,7 @@ export default function Home() {
     return (
         <div className='test2'>
             <Header />
+            <Body />
         </div>
     )
 }

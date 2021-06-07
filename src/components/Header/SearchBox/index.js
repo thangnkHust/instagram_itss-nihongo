@@ -29,7 +29,7 @@ export default function CustomizedInputBase() {
   const classes = useStyles();
 
   return (
-    <Grid container xs={6}>
+    <Grid container xs={8}>
         <Paper component="form" className={classes.root}>
         <InputBase
             className={classes.input}
