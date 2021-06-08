@@ -14,6 +14,8 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
+import CommentList from '../../CommentList';
+import CommentInput from '../../CommentList/CommentInput';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -48,6 +50,7 @@ export default function Post({ post }) {
     //show popup confirm 
     handleClickOpenPopup();
   };
+
 
   const menu = (
     <Menu
@@ -138,10 +141,9 @@ export default function Post({ post }) {
         <Typography variant='h5' color='textPrimary'>
           {post.title}
         </Typography>
-        <Typography variant='body2' component='p' color='textSecondary'>
-          {post.content}
-        </Typography>
+        <CommentList />
       </CardContent>
+      <CommentInput />
     </Card>
   );
 }

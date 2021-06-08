@@ -16,10 +16,8 @@ export default makeStyles((theme) => ({
     homePost: {
         height: '100%',
         padding: 20,
-        border: '1px grey solid'
     },
     suggest: {
         height: '100%',
-        border: '1px grey solid'
     }
 }));

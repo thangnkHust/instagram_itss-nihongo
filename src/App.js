@@ -12,8 +12,8 @@ function App(props) {
         user && props.setData(JSON.parse(user))
     }, [props])
     return (
-        // <MainRoute />
-        <Home />
+        <MainRoute />
+        // <Home />
     )
 }
 

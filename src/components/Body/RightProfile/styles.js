@@ -17,7 +17,7 @@ export default makeStyles((theme) => ({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'left',
-        paddingLeft: 10,
+        paddingLeft: 20,
         // backgroundColor: 'green',
     },
     textAccount: {
@@ -37,7 +37,7 @@ export default makeStyles((theme) => ({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'left',
-        paddingLeft: 10,
+        paddingLeft: 20,
         // backgroundColor: 'green',
     },
     textAccountSuggest: {
